@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  height:100%;
+}
+.page-footer{
+  background-color: #EFD469!important;
+  color: #30415D;
+}
+main {
+  flex: 1 0 auto;
+}
+    
+footer.page-footer .footer-copyright{
+  color: #30415D;
+}

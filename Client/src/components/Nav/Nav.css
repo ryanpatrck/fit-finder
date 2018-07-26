@@ -1,0 +1,15 @@
+.Logout {
+    cursor: pointer;
+}
+
+nav {
+    background-color: #EFD469!important;
+    box-shadow: none;
+    color: #30415D!important;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+Nav a {
+    color:#30415D!important;
+}

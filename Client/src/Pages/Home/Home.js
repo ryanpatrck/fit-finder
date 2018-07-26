@@ -39,7 +39,7 @@ class Home extends Component {
         </Col>
         <Parallax imageSrc={Gym}/>
           <Col m={6} s={12}>
-          <Card className='' textClassName='white-text' title='Trainer Benefits' actions={[<a href='/exercise'>Start Training Session</a>]}>
+          <Card className='' textClassName='white-text' title='Trainer Benefits' actions={[<a href='/exercise'>Start Training Session!</a>]}>
             <p>
               <Row><Icon>brightness_1</Icon> Makes finding clients easy by pairing with clients</Row>
               <Row><Icon>brightness_1</Icon> Open communication with clients that are matched </Row>

@@ -117,8 +117,10 @@ app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
 
 // Starting the app on PORT 3000
 const PORT = 3001;
-app.listen(PORT, () => {
+
+app.listen(PORT, function () {
     // eslint-disable-next-line
     console.log(`Magic happens on port ${PORT}`);
 });
+
 module.exports= app

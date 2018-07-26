@@ -7,7 +7,7 @@
  ### Website visuals
  ## Home Page
 <img src="/readme-images/homepageOne.png" alt="HomePage">
-<img src="/readme-images/homepageTwo.png" alt="HomePage">
+<img src="/readme-images/hpage2.png" alt="HomePage">
 <img src="/readme-images/homepageThree.png" alt="HomePage">
 <img src="/readme-images/homepageFour.png" alt="HomePage">
 <img src="/readme-images/homePageFive.png" alt="HomePage">

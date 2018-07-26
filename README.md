@@ -22,39 +22,33 @@
 <img src="/readme-images/signup.png" alt="Signup">
 
 ## Goals Page
-<img src="/images/Contactpage1.png" alt="ContactPage">
-<img src="/images/contactpage2.png" alt="ContactPage">
+<img src="/readme-images/goalsOne.png" alt="Goals">
+<img src="/readme-images/goalsTwo.png" alt="Goals">
 
 ## Matching Page
-<img src="/images/Contactpage1.png" alt="ContactPage">
-<img src="/images/contactpage2.png" alt="ContactPage">
+<img src="/readme-images/matchingOne.png" alt="Matching">
+<img src="/readme-images/matchingTwo.png" alt="Matching">
 
 ## View Page
-<img src="/images/Contactpage1.png" alt="ContactPage">
-<img src="/images/contactpage2.png" alt="ContactPage">
+<img src="/readme-images/view.png" alt="View">
 
 ## Exercise Page
-<img src="/images/Contactpage1.png" alt="ContactPage">
-<img src="/images/contactpage2.png" alt="ContactPage">
-
-
-
-## Search Results Page
-<img src="/images/Searchresults.png" alt="SearchResults">
-
-
+<img src="/readme-images/exercise.png" alt="Exercise">
 
 ### Contributors
-- Ryan Patrick:  Reactjs, Materialize
+- Ryan Patrick:  Reactjs, Materialize, CSS, Express, Node
 
 
 ### Languages Used
-- Utlized jQuery
-- Javascript
+- Materialize
+- ReactJS
+- Node
+- Express
 - HTML
 - CSS
-- Weather API
-- National Parks API
+- MongoDB
+- Opentok API
+- JSON Web Token Authentication
  
 
 

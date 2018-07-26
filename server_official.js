@@ -16,7 +16,7 @@ const express = require('express'),
 require('dotenv').config()
 var OpenTok = require('opentok');
 
-// const seeds = require("./Scripts/seeduserDB");
+const seeds = require("./Scripts/seeduserDB");
 
 // var apiKey = process.env.API_KEY;
 // var apiSecret= process.env.API_SECRET;

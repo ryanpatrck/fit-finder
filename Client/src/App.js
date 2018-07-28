@@ -12,7 +12,10 @@ class App extends Component {
 
     return (
       <div>
-        {this.props.history.location.pathname === "/" ? <Redirect to="/home" /> : null}
+       <Switch>
+       <Route exact path="/"  component={Home}/>
+
+        </Switch>
       </div>
 
     );

@@ -5,9 +5,9 @@
   "main": "server_official.js",
   "scripts": {
     "start": "node server_official.js",
-    "client": "cd client/src && npm run start",
-    "install": "cd client/src && yarn install",
-    "build": "cd client/src && npm run build",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
 

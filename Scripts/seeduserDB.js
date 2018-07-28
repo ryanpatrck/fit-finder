@@ -27,7 +27,7 @@ const userSeed = [
     name: "Dustin Garcia",
     age: 31,
     weight: 215,
-    hieght: "six foot two"
+    height: "six foot two"
    
   }
   

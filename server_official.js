@@ -42,6 +42,7 @@ app.use(routes);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//Update Mongo on heroku
 var databaseUri ="mongodb://localhost/reactuserslist"
 if (process.env.MONGODB_URI){
     mongoose.connect(process.env.MONGODB_URI);

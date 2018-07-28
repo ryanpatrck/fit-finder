@@ -13,7 +13,6 @@ const express = require('express'),
       jwt = require('jsonwebtoken'),
       exjwt = require('express-jwt'),
       mongoose = require("mongoose")
-require('dotenv').config()
 var OpenTok = require('opentok');
 
 const seeds = require("./Scripts/seeduserDB");

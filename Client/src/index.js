@@ -13,7 +13,7 @@ import Exercise from './Pages/Exercise/Exercise'
 import Signup from './Pages/Signup/Signup'
 import Goals from './Pages/Goals/Goals'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-require('dotenv').config();
+
 
 ReactDOM.render(<Router>
     <div className='app'>

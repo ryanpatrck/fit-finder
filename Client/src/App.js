@@ -9,8 +9,9 @@ import Home from './Pages/Home'
 class App extends Component {
 
   render() {
-
+    console.log('I was triggered during render')
     return (
+     
       <div>
        <Switch>
        <Route exact path="/"  component={Home}/>

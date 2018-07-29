@@ -103,6 +103,7 @@ app.post('/login', (req, res) => {
             break;
         }
         else {
+            console.log('[token] ', token)
             res.status(401).json({
                 sucess: false,
                 token: null,

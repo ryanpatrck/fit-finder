@@ -113,7 +113,6 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
-    console.log(res)
     res.send('You are authenticated'); //Sending some response when authenticated
 });
 

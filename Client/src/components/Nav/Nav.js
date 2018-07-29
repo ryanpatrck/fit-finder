@@ -8,7 +8,7 @@ const Nav = (props) => {
   let Auth = new AuthService();
   let handleLogout = () => {
       Auth.logout()
-      props.history.replace('/')
+      props.history.replace('/home')
   }
 
   return(

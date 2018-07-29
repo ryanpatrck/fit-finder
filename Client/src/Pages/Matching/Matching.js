@@ -16,15 +16,15 @@ class Matching extends Component {
         <Parallax imageSrc={Gym} />
         <div className='container'>
           <div className='pick'>
-          <h1 className= 'pick'> Pick A Trainer! </h1>
-           </div>
+            <h1 className='pick'> Pick A Trainer! </h1>
+          </div>
           <Row className="carousel">
-          <a href='/view'><Carousel  images={[
-            Ross,
-            Sean,
-           Dustin,
-          ]} />
-          </a>
+            <a href='/view'><Carousel images={[
+              Ross,
+              Sean,
+              Dustin,
+            ]} />
+            </a>
           </Row>
         </div>
         <Parallax imageSrc={Gym} />

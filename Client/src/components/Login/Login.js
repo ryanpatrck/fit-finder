@@ -55,7 +55,7 @@ class Login extends React.Component{
         e.preventDefault();
         this.Auth.login(this.state.username, this.state.password)
         .then(res => {
-            this.props.history.replace('/');
+            this.props.history.replace('/home');
         })
         .catch(err => {
             alert(err);

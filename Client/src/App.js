@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import AuthService from './components/Auth/AuthService';
 import withAuth from './components/Auth/withAuth';
-import Home from './Pages/Home'
+
 
 
 

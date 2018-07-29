@@ -14,6 +14,22 @@ class Login extends React.Component{
         if(this.Auth.loggedIn())
             this.props.history.replace('/');
     }
+    handleChange(e){
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+    handleFormSubmit(e){
+        e.preventDefault();
+        this.Auth.login(this.state.username, this.state.password)
+        .then(res => {
+            this.props.history.replace('/');
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }
+
     render(){
         return(
             <div className="center">
@@ -46,21 +62,7 @@ class Login extends React.Component{
             </div>
         )
     }
-    handleChange(e){
-        this.setState({
-            [e.target.name]:e.target.value
-        })
-    }
-    handleFormSubmit(e){
-        e.preventDefault();
-        this.Auth.login(this.state.username, this.state.password)
-        .then(res => {
-            this.props.history.replace('/');
-        })
-        .catch(err => {
-            alert(err);
-        })
-    }
+   
 }
 
 

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
    "start:prod": "node server_official.js",
-   "start:dev": "concurrently \"nodemon --ignore 'Client/*'\" \"npm run Client\"",
-   "client": "cd Client && npm run start",
+   "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+   "client": "cd client && npm run start",
    "heroku-postbuild": "npm run build"
 
 

@@ -26,7 +26,9 @@ const seeds = require("./Scripts/seeduserDB");
 const app = express();
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+    res.header("Access-Control-Allow-Origin", "*");
+
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With');
   
     next();
 });
@@ -98,7 +100,7 @@ app.post('/login', (req, res) => {
                 token
 
             });
-            console.log(req.body)
+          
             break;
         }
         else {
@@ -108,7 +110,7 @@ app.post('/login', (req, res) => {
                 token: null,
                 err: 'Username or password is incorrect'
             });
-            console.log(req.body)
+            
         }
     }
 });
@@ -122,7 +124,7 @@ app.use(function (err, req, res, next) {
   
     if (err.name === 'UnauthorizedError') { // Send the error rather than to show it on the console
         res.status(401).send(err);
-        console.log("I am not working")
+        console.log("I am not working!!!!", res)
         
     }
     else {

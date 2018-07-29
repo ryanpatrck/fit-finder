@@ -119,6 +119,7 @@ app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
 
 // Error handling 
 app.use(function (err, req, res, next) {
+    console.log('Why am I not working?')
     if (err.name === 'UnauthorizedError') { // Send the error rather than to show it on the console
         res.status(401).send(err);
     }

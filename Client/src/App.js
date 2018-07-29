@@ -26,10 +26,14 @@ class App extends Component {
 
     return (
       <div>
-       <Switch>
-       <Route exact path="/"  component={Home}/>
-
-        </Switch>
+       <div className="main-page">
+          <div className="top-section">
+            <h1>FitFinder</h1>
+          </div>
+          <div className="bottom-section">
+            <button onClick={this._handleLogout}>LOGOUT</button>
+          </div>
+        </div>
       </div>
 
     );

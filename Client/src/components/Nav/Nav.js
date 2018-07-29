@@ -8,7 +8,7 @@ const Nav = (props) => {
   let Auth = new AuthService();
   let handleLogout = () => {
       Auth.logout()
-      props.history.replace('/home')
+      props.history.replace('/')
   }
 
   return(
@@ -22,7 +22,7 @@ const Nav = (props) => {
         <li><a href="/goals">Goals</a></li>
         <li><a href="/matching">Matching</a></li>
         <li><a href="/exercise">Exercise</a></li>
-        <li onClick={handleLogout}> <a href="/home"> Logout </a> </li>
+        <li onClick={handleLogout}> <a href="/"> Logout </a> </li>
      
       </ul>
     </div>

@@ -12,7 +12,7 @@ class Login extends React.Component{
     }
     componentWillMount(){
         if(this.Auth.loggedIn())
-            this.props.history.replace('/home');
+            this.props.history.replace('/');
     }
     render(){
         return(
@@ -55,7 +55,7 @@ class Login extends React.Component{
         e.preventDefault();
         this.Auth.login(this.state.username, this.state.password)
         .then(res => {
-            this.props.history.replace('/home');
+            this.props.history.replace('/');
         })
         .catch(err => {
             alert(err);

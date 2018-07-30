@@ -85,37 +85,37 @@ app.post('/signin', (req, res) => {
   })
 //
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    db.user.findOne(
-      {
-        where: { username: username }
+  const { username, password } = req.body;
+  db.user.findOne(
+    {
+      where: { username: username }
+    }
+  ).then((user) => {
+    if(user === null){
+      res.json(false);
+    }
+    bcrypt.compare(password, user.password, function(err, result) {
+      if(result === true){
+        console.log("valid");
+        let token = jwt.sign({ username: user.username }, 'keyboard cat 4 ever', {expiresIn: 129600});
+        res.json({
+          success: true,
+          err: null,
+          token
+        })
       }
-    ).then((user) => {
-      if(user === null){
-        res.json(false);
+      else {
+        console.log("Entered password was wrong!");
+        res.status(401).json({
+          success: false,
+          token: null,
+          err: 'Entered Password and Hash do not match!'
+        })
       }
-      bcrypt.compare(password, user.password, function(err, result) {
-        if(result === true){
-          console.log("valid");
-          let token = jwt.sign({ username: user.username }, 'keyboard cat 4 ever', {expiresIn: 129600});
-          res.json({
-            success: true,
-            err: null,
-            token
-          })
-        }
-        else {
-          console.log("Entered password was wrong!");
-          res.status(401).json({
-            success: false,
-            token: null,
-            err: 'Entered Password and Hash do not match!'
-          })
-        }
-      })
     })
   })
-  
+})
+
 app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
     res.send('You are authenticated'); //Sending some response when authenticated
 });
@@ -137,10 +137,10 @@ app.use(function (err, req, res, next) {
 
 // Starting the app on PORT 3000
 const PORT = process.env.PORT || 3001
-
+db.mongoose.sync().then(() => 
 app.listen(PORT, function () {
     // eslint-disable-next-line
     console.log(`Magic happens on port ${PORT}`);
-});
+}));
 
 module.exports= app

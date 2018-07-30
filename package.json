@@ -5,18 +5,18 @@
   "main": "server_official.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-   "start:prod": "node server_official.js",
-   "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-   "client": "cd client && npm run start",
-   "heroku-postbuild": "npm run build"
-
-
+    "start:prod": "node server_official.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
+    "cookie-parser": "^1.4.3",
     "currently": "0.0.8",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",

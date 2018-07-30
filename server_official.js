@@ -14,7 +14,7 @@ const express = require('express'),
       exjwt = require('express-jwt'),
       mongoose = require("mongoose")
 var OpenTok = require('opentok');
-
+let db = require("./models");
 const seeds = require("./Scripts/seeduserDB");
 
 // var apiKey = process.env.API_KEY;
@@ -53,13 +53,13 @@ if (process.env.MONGODB_URI){
 } else {
     mongoose.connect(databaseUri);
 }
-var db = mongoose.connection;
+var db1 = mongoose.connection;
 
-db.on('error', function(err) {
+db1.on('error', function(err) {
     console.log('Mongoose Error: ', err);
 })
 
-db.once('open', function() {
+db1.once('open', function() {
     console.log('mongoose connection successful.')
 })
 
@@ -70,52 +70,52 @@ const jwtMW = exjwt({
 
 
 
-// MOCKING DB just for test
-let users = [
-    {
-        id: 1,
-        username: 'test',
-        password: 'asdf123'
-    },
-    {
-        id: 2,
-        username: 'test2',
-        password: 'asdf12345'
-    }
-];
+app.post('/signin', (req, res) => {
+    const { username, password } = req.body;
+    const saltRounds = 10;
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+      db.user.create({
+        username: username,
+        password: hash
+      }).then((result) => {
+        console.log("User created:", result);
+        res.json("User created!");
+      })
+    })
+  })
 //
-// LOGIN ROUTE
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    //do this
-    console.log("This is our request:", req.body);
-   
-    // Use your DB ORM logic here to find user and compare password
-    for (let user of users) { // I am using a simple array users which i made above
-        if (username == user.username && password == user.password /* Use your password hash checking logic here !*/) {
-            //If all credentials are correct do this
-            let token = jwt.sign({ id: user.id, username: user.username }, 'keyboard cat 4 ever', { expiresIn: 129600 }); // Sigining the token
-            res.json({
-                sucess: true,
-                err: null,
-                token
-
-            });
-          
-            break;
+    db.user.findOne(
+      {
+        where: { username: username }
+      }
+    ).then((user) => {
+      if(user === null){
+        res.json(false);
+      }
+      bcrypt.compare(password, user.password, function(err, result) {
+        if(result === true){
+          console.log("valid");
+          let token = jwt.sign({ username: user.username }, 'keyboard cat 4 ever', {expiresIn: 129600});
+          res.json({
+            success: true,
+            err: null,
+            token
+          })
         }
         else {
-           
-            res.status(401).json({
-                sucess: false,
-                token: null,
-                err: 'Username or password is incorrect'
-            });
-            
+          console.log("Entered password was wrong!");
+          res.status(401).json({
+            success: false,
+            token: null,
+            err: 'Entered Password and Hash do not match!'
+          })
         }
-    }
-});
-
+      })
+    })
+  })
+  
 app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
     res.send('You are authenticated'); //Sending some response when authenticated
 });

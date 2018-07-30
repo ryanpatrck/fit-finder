@@ -26,7 +26,7 @@ const seeds = require("./Scripts/seeduserDB");
 const app = express();
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://rossfitfinder.herokuapp.com");
     
 
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With');

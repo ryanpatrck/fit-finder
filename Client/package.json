@@ -14,21 +14,11 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ryanpatrck/fit-finder.git "
-  },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.18.3"
   }
 }

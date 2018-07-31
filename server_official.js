@@ -77,7 +77,7 @@ app.post('/signup', (req, res) => {
     })
   })
 
-app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
+app.get('/auth', jwtMW /* Using the express jwt MW here */, (req, res) => {
     res.send('You are authenticated'); //Sending some response when authenticated
 });
 

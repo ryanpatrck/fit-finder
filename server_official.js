@@ -62,12 +62,12 @@ const jwtMW = exjwt({
 
 /* Create a signup post route that will store the username and password in our DB along with encrypting the password using the bcrypt package. We will want to store the password in the DB as a hash, which requires salting(A salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase.)*/
 app.post('/signup', (req, res) => {
-    const { name, email, password } = req.body;
-    console.log(name, email, password)
+    const { username, email, password } = req.body;
+    console.log(username, email, password)
     const saltRounds = 10;
     bcrypt.hash(password, saltRounds, (err, hash) => {
       db.User.create({
-        "name": name,
+        "username": username,
         "email": email,
         "password": hash
       }).then((result) => {

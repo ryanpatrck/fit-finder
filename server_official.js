@@ -10,7 +10,7 @@
     const express = require('express'),
           routes = require('./Routes/index')
           cookieParser = require('cookie-parser'),
-          bcrypt = require('bcrypt'),
+          bcrypt = require('bcryptjs'),
           bodyParser = require('body-parser'),
           jwt = require('jsonwebtoken'),
           exjwt = require('express-jwt'),

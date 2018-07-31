@@ -8,13 +8,13 @@
 
 // Bringing all the dependencies in
     const express = require('express'),
-        routes = require('./Routes/index');
-        cookieParser = require('cookie-parser');
-        bcrypt = require('bcrypt');
-        bodyParser = require('body-parser'),
-        jwt = require('jsonwebtoken'),
-        exjwt = require('express-jwt'),
-        mongoose = require("mongoose")
+          routes = require('./Routes/index')
+          cookieParser = require('cookie-parser'),
+          bcrypt = require('bcrypt'),
+          bodyParser = require('body-parser'),
+          jwt = require('jsonwebtoken'),
+          exjwt = require('express-jwt'),
+          mongoose = require("mongoose")
 var OpenTok = require('opentok');
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactuserslist");

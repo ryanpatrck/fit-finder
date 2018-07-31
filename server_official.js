@@ -14,7 +14,8 @@
           bodyParser = require('body-parser'),
           jwt = require('jsonwebtoken'),
           exjwt = require('express-jwt'),
-          mongoose = require("mongoose")
+          mongoose = require("mongoose");
+var path = require("path");
 var OpenTok = require('opentok');
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactuserslist");

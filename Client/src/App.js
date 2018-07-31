@@ -1,47 +1,28 @@
 import React, { Component } from 'react';
-import AuthService from './components/AuthService';
-import withAuth from './components/withAuth';
-
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import AuthService from './components/Auth/AuthService';
+import withAuth from './components/Auth/withAuth';
+import Home from './Pages/Home'
 
 
 
 class App extends Component {
 
-  /* Create a new instance of the 'Authservice' compoenent*/
- Auth = new AuthService();
-
-  state = {
-    username: "",
-    password: ""
-}
-
-/* Here will want to add a method to log the user out upon clicking 'Logout' */
-  _handleLogout = () => {
-    //include the logout() method from our AuthService helper class here.
-    this.Auth.logout();
-    this.props.history.replace('/login');
-  }
-
-  //Render the protected component
   render() {
-
-    let name = this.props.confirm.name;
-
+    console.log('I was triggered during render')
     return (
-      <div className="App">
-        <div className="main-page">
-          <div className="top-section">
-            <h1>Welcome, {name}</h1>
-          </div>
-          <div className="bottom-section">
-            <button onClick={this._handleLogout}>LOGOUT</button>
-          </div>
-        </div>
+     
+      <div>
+       <Switch>
+       <Route exact path="/"  component={Home}/>
+
+        </Switch>
       </div>
+
     );
   }
+
 }
 
-//In order for this component to be protected, we must wrap it with what we call a 'Higher Order Compoenent' or HOC.
-export default withAuth(App);
 
+export default withAuth(App);

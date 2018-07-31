@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactuserslist"
     
 // Instantiating the express app
 const app = express();
-
+// Cors is required for access
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     
@@ -38,7 +38,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Cors is required for access
+
 
 
 // Setting up bodyParser to use json and set it to req.body
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
     
     app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'index.html'));
   });
 }
 

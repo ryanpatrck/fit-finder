@@ -7,15 +7,18 @@
  */
 
 // Bringing all the dependencies in
-const express = require('express'),
-    routes = require('./Routes/index');
-      bodyParser = require('body-parser'),
-      jwt = require('jsonwebtoken'),
-      exjwt = require('express-jwt'),
-      mongoose = require("mongoose")
+    const express = require('express'),
+        routes = require('./Routes/index');
+        cookieParser = require('cookie-parser');
+        bcrypt = require('bcrypt');
+        bodyParser = require('body-parser'),
+        jwt = require('jsonwebtoken'),
+        exjwt = require('express-jwt'),
+        mongoose = require("mongoose")
 var OpenTok = require('opentok');
 
-const seeds = require("./Scripts/seeduserDB");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactuserslist");
+//const seeds = require("./Scripts/seeduserDB");
 
 // var apiKey = process.env.API_KEY;
 // var apiSecret= process.env.API_SECRET;
@@ -42,26 +45,13 @@ app.use(routes);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
    }
 
-//Update Mongo on heroku
-var databaseUri ="mongodb://localhost/reactuserslist"
-if (process.env.MONGODB_URI){
-    mongoose.connect(process.env.MONGODB_URI);
-} else {
-    mongoose.connect(databaseUri);
-}
-var db = mongoose.connection;
-
-db.on('error', function(err) {
-    console.log('Mongoose Error: ', err);
-})
-
-db.once('open', function() {
-    console.log('mongoose connection successful.')
-})
 
 // Instantiating the express-jwt middleware
 const jwtMW = exjwt({
@@ -70,53 +60,24 @@ const jwtMW = exjwt({
 
 
 
-// MOCKING DB just for test
-let users = [
-    {
-        id: 1,
-        username: 'test',
-        password: 'asdf123'
-    },
-    {
-        id: 2,
-        username: 'test2',
-        password: 'asdf12345'
-    }
-];
-//
-// LOGIN ROUTE
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    //do this
-    console.log("This is our request:", req.body);
-   
-    // Use your DB ORM logic here to find user and compare password
-    for (let user of users) { // I am using a simple array users which i made above
-        if (username == user.username && password == user.password /* Use your password hash checking logic here !*/) {
-            //If all credentials are correct do this
-            let token = jwt.sign({ id: user.id, username: user.username }, 'keyboard cat 4 ever', { expiresIn: 129600 }); // Sigining the token
-            res.json({
-                sucess: true,
-                err: null,
-                token
+/* Create a signup post route that will store the username and password in our DB along with encrypting the password using the bcrypt package. We will want to store the password in the DB as a hash, which requires salting(A salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase.)*/
+app.post('/signup', (req, res) => {
+    const { name, email, password } = req.body;
+    console.log(name, email, password)
+    const saltRounds = 10;
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+      db.User.create({
+        "name": name,
+        "email": email,
+        "password": hash
+      }).then((result) => {
+        console.log("user created:", result);
+        res.json("user created!");
+      })
+    })
+  })
 
-            });
-          
-            break;
-        }
-        else {
-           
-            res.status(401).json({
-                sucess: false,
-                token: null,
-                err: 'Username or password is incorrect'
-            });
-            
-        }
-    }
-});
-
-app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
+app.get('/auth', jwtMW /* Using the express jwt MW here */, (req, res) => {
     res.send('You are authenticated'); //Sending some response when authenticated
 });
 
@@ -133,8 +94,8 @@ app.use(function (err, req, res, next) {
     }
 });
 
-
-
+// Add routes, both API and view
+app.use(routes);
 // Starting the app on PORT 3000
 const PORT = process.env.PORT || 3001
 
